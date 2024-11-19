@@ -1,0 +1,110 @@
+<!-- Content Start -->
+<div class="content">
+    <!-- Navbar Start -->
+    <%- include('partials/header') %>
+    <!-- Navbar End -->
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 cloudflare">
+                <div class="bg-formDetalle rounded h-200 p-4">
+                    
+                    <form action="/saveuserplat" method="POST">
+
+                        <a href="/CreateUserPlatform" class="btn btn-pink mt-4"> <i class='bx bxs-plus-circle bx-md'></i> </a>
+                           
+                        <h4 align="center">USUARIOS PLATAFORMA</h4>
+                        <table class="table table-striped text-center table-bordered mt-4">
+                            <thead>
+                                <tr class="table-secondary">
+                                    <th scope="col" style="width: 50px;">ID</th>
+                                    <th scope="col" style="width: 50px;">USUARIO</th>
+                                    <th scope="col" style="width: 250px;">NOMBRE</th>
+                                    <th scope="col" style="width: 150px;">APELLIDOS</th>
+                                    <th scope="col" style="width: 50px;">TELEFONO 1</th>
+                                    <th scope="col" style="width: 50px;">TELEFONO 2</th>
+                                    <th scope="col" style="width: 10px;">E-MAIL</th>
+                                    <th scope="col" style="width: 50px;">ROL</th>
+                                    <th scope="col" style="width: 50px;">Password TEMP</th>
+                                    <th scope="col" style="width: 50px;">ESTADO</th>
+                                    <th scope="col" style="width: 150px;">ACCIONES</th>
+                                </tr>
+                            </thead>
+                       
+                            <tbody>
+                                <% if (results && results.length > 0) { %>
+                                    <% results.forEach((user) => { %>
+                                        <tr>
+                                            <td><%= user.id %></td>
+                                            <td><%= user.user %></td>
+                                            <td><%= user.name %></td>
+                                            <td><%= user.lastname %></td>
+                                            <td><%= user.phone1 %></td>
+                                            <td><%= user.phone2 %></td>
+                                            <td><%= user.email %></td>
+                                            <td><%= user.roles %></td>
+                                            <td><%= user.passwordTemporary %></td>
+                                            <td><%= user.isActive %></td>
+                                            
+                                            <td>
+                                                <a href="/editUserPlatform/<%= user.id %>" class="btn btn-outline-info">editar</a>
+                                                <a href="#" onclick="confirmDelete('<%= user.id %>')" class="btn btn-outline-danger">borrar</a>
+                                                <script>
+                                                    function confirmDelete(userId) {
+                                                        // Mostrar cuadro de confirmación
+                                                        let confirmation = confirm("¿Estás seguro de que deseas eliminar este usuario de plataforma?, esta acción no se puede deshacer.");
+                                                        
+                                                        if (confirmation) {
+                                                            // Si el usuario confirma, redirigir a la URL de eliminación
+                                                            window.location.href = `/deleteUserPlatform/${userId}`;
+                                                        }
+                                                        // Si el usuario cancela, no hacer nada
+                                                    }
+                                                </script>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="4">No se encontraron usuarios</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    
+                        <!-- Agregar enlaces para la página siguiente y página anterior -->
+                        <div class="pagination mt-4">
+                            <a href="/index?page=<%= parseInt(1) %>" class="btn btn-info">Primera</a>&emsp;
+                            <a href="/index?page=<%= parseInt(paginaActual) + 1 %>" class="btn btn-info">Siguiente --></a>&emsp;
+                            <a href="/index?page=<%= parseInt(paginaActual) - 1 %>" class="btn btn-info"><-- Anterior </a>
+                        </div>
+                    
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <% if (typeof alert != "undefined") { %>
+                            <script>
+                                swal.fire({
+                                    title: '<%= alertTitle %>',
+                                    text: '<%= alertMessage %>',
+                                    icon: '<%= alertIcon %>',
+                                    showConfirmButton: '<%= showConfirmButton %>',
+                                    timer: '<%= timer %>'
+                                }).then(() => {
+                                    window.location = '/<%= ruta %>'
+                                })
+                            </script>
+                        <% } %>
+
+                    </form>
+
+               
+                </div>
+
+           
+
+            </div>
+        </div>
+    </div>
+    <!-- Form End -->
+</div>
+<!-- Content End -->

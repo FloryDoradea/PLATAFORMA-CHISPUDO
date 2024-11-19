@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width", initial-scale="1.0">
+
+        <link href="assets/bootstrap-5.3.2-dist/css/bootstrap.min.css"  rel="stylesheet">
+        <script src="assets/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+
+        <title>INICIO</title>
+    </head>
+
+    <body>
+        <h1 align="center">PAGINA DE INICIO </h1>
+        <% if(login) {  %>
+            <h1 align="center">El usuario conectado es: <strong> <%= name %> </strong> </h1>
+            <a href="logout" class="btn btn-info btn-lg">Logaut</a>
+
+        <% } else { %>
+            <h1 align="center"><strong><%= name %> </strong></h1>
+            <a href="login" class="btn btn-primary btn-lg">Ir al LOGIN</a>
+        <% } %>
+    </body>
+
+</html>

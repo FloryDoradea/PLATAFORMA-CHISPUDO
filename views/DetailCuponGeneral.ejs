@@ -1,0 +1,104 @@
+<!-- Content Start -->
+<div class="content">
+  <!-- Navbar Start -->
+  <%- include('partials/header') %>
+  <!-- Navbar End -->
+
+  <!-- Form Start -->
+  <div class="container-fluid pt-4 px-4">
+      <div class="row g-4">
+          <div class="col-sm-12 cloudflare">
+              <div class="bg-formDetalle rounded h-200 p-4">
+                  <form action="/save" method="POST">
+            
+                    <a href="/CreateNewCupon" class="btn btn-pink mt-4"> <i class='bx bxs-plus-circle bx-md'></i> </a>  
+
+                      <input id="WebPage" name ="WebPage" value="2" hidden>
+
+                      <h4 align="center">TOTAL DE CUPONES: <%= totalRegistros %></h4>
+      
+
+                      <table class="table table-striped text-center table-bordered mt-4">
+                        <thead>
+                            <tr class="table-secondary">
+                                <th scope="col" style="width: 50px;">ID</th>
+                                <th scope="col" style="width: 150px;">FECHA INICIO
+                                <th scope="col" style="width: 150px;">FECHA FIN</th>   
+                                <th scope="col" style="width: 100px;" >MONTO</th>
+                                <th scope="col" style="width: 150px;" >DESCRIPCION</th>
+                                <th scope="col" style="width: 50px;">ESTDO</th>
+                                <th scope="col" style="width: 200px;">CREATED</th>
+                                <th scope="col" style="width: 150px;">USUARIO</th>
+                                <th scope="col" style="width: 125px;">ACCIONES</th>
+                            </tr>
+                        </thead>
+
+                          <tbody>
+                              <% if (results && results.length > 0) { %>
+                                  <% results.forEach((rest) => { %>
+                                   
+                                      <tr>
+                                          <td><%= rest.id %></td>
+                                          <td><%= rest.fechainicio %></td>
+                                          <td><%= rest.fechafin %></td> 
+                                          <td><%= rest.monto %></td>
+                                          <td><%= rest.descripcion %></td>
+                                          <td><%= rest.estado %></td>
+                                          <td><%= rest.createdAt %></td>  
+                                          <td><%= rest.usuario %></td>                                       
+                                          <td>
+                                              <a href="/editCupon/<%= rest.id %>" class="btn btn-outline-info">editar</a>
+                                              <a href="#" onclick="confirmDelete('<%= rest.id %>')" class="btn btn-outline-danger">borrar</a>
+                                              <script>
+                                                  function confirmDelete(restId) {
+                                                      // Mostrar cuadro de confirmación
+                                                      let confirmation = confirm("¿Estás seguro de que deseas eliminar este CUPON?, esta acción no se puede deshacer.");
+                                                      
+                                                      if (confirmation) {
+                                                          // Si el usuario confirma, redirigir a la URL de eliminación
+                                                          window.location.href = `/deleteCupon/${restId}`;
+                                                      }
+                                                      // Si el usuario cancela, no hacer nada
+                                                  }
+                                              </script>
+                                          </td>
+                                      </tr>
+                                  <% }) %>
+                              <% } else { %>
+                                  <tr>
+                                      <td colspan="4">No se encontraron Menus</td>
+                                  </tr>
+                              <% } %>
+                          </tbody>
+                      </table>
+
+                      <!-- Agregar enlaces para la página siguiente y página anterior -->
+                      <div class="pagination mt-4">
+                          <a href="/DetailCuponGeneral?page=<%= parseInt(1) %>" class="btn btn-info">Primera</a>&emsp;
+                          <a href="/DetailCuponGeneral?page=<%= parseInt(paginaActual) + 1 %>" class="btn btn-info">Siguiente --></a>&emsp;
+                          <a href="/DetailCuponGeneral?page=<%= parseInt(paginaActual) - 1 %>" class="btn btn-info"><-- Anterior </a>
+                      </div>
+
+                      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                      <% if (typeof alert != "undefined") { %>
+                          <script>
+                              swal.fire({
+                                  title: '<%= alertTitle %>',
+                                  text: '<%= alertMessage %>',
+                                  icon: '<%= alertIcon %>',
+                                  showConfirmButton: '<%= showConfirmButton %>',
+                                  timer: '<%= timer %>'
+                              }).then(() => {
+                                  window.location = '/<%= ruta %>'
+                              })
+                          </script>
+                      <% } %>
+
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Form End -->
+</div>
+<!-- Content End -->

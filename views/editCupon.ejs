@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<!-- Content Start -->
+<div class="content">
+  <head>
+    <!-- Incluye jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Incluye jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+
+
+    <% if(results){ %> 
+    <div class="Container mt-4">
+
+        <!--<div class="card border-secondary">
+            <div class="card-header">Editar Registro</div>
+            <div class="card-body"> FONDO BLANCO-->
+
+      <div class="container-fluid pt-4 px-4">
+        <div  class="row g-4">
+            <div class="col-sm-12 col-xl-150">
+                <div class="bg-secondary rounded h-100 p-4">
+
+                  <form action ="/updateCupon" method ="post">
+                    <input id="id" name ="id" value="<%= results.id %>" hidden>
+
+                    <div class="mb-3 d-flex justify-content-center">
+                      <label for="image" class="form-label"></label>
+                      <img src="<%= results.imagencupon %>" alt="Imagen del cupon">
+                    </div>
+
+                    <div class="mb-4">
+                      <label for ="id" class="form-label">Código del cupon</label>  
+                      <input type="number" class="form-control" id="id" name="id" value="<%= results.id %>" tabindex="1" readonly >
+                    </div>
+
+                    <div class="mb-3">
+                      <label for ="fechainicio" class="form-label">Fecha Inicio *</label>
+                      <input type="text" class="form-control" id="fechainicio" name="fechainicio" value="<%= results.fechainicio %>"  tabindex="1" required >
+                    </div>
+                    <div class="mb-3">
+                      <label for ="fechafin" class="form-label">Fecha Fin *</label>
+                      <input type="text" class="form-control" id="fechafin" name="fechafin" value="<%= results.fechafin %>" tabindex="1" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for ="monto" class="form-label">Monto *</label>
+                      <input type="number" step="0.01" min="0.01" class="form-control" id="monto" name="monto" value="<%= results.monto %>" tabindex="1" required>
+                  </div>
+
+                    <div class="mb-3">
+                      <label for ="descripcion" class="form-label">Descripcion *</label>
+                      <input type="text" class="form-control" id="descripcion" name="descripcion" value="<%= results.descripcion %>" tabindex="1" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="estado" class="form-label">Estado *</label>
+                      <select id="estado" name="estado" class="form-select" tabindex="2">
+                          <!-- Opción Activo -->
+                          <option value="activo" <%=  results.estado === 'activo' ? 'selected' : '' %>>activo</option>
+                          
+                          <!-- Opción Inactivo -->
+                          <option value="inactivo" <%=  results.estado === 'inactivo'? 'selected' : '' %>>inactivo</option>
+                      </select>
+                  </div>
+
+                    <div class="mb-3">
+                      <label for ="createdAt" class="form-label">Creado</label>
+                      <input type="text" class="form-control" id="createdAt" name="createdAt" value="<%= results.createdAt %>"  tabindex="1" readonly  >
+                    </div>
+                    <div class="mb-3">
+                      <label for ="updatedAt" class="form-label">Modificado</label>
+                      <input type="text" class="form-control" id="updatedAt" name="updatedAt" value="<%= results.updatedAt %>"  tabindex="1" readonly > 
+                    </div>
+
+                    <div class="mb-3">
+                      <label for ="usuario" class="form-label">Usuario</label>
+                      <input type="text" class="form-control" id="usuario" name="usuario" value="<%= results.usuario %>"  tabindex="1" readonly > 
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="imagencupon" class="form-label">Cambiar Imagen menú *</label>
+                        <input class="form-control bg-dark" type="file" id="imagencupon" name = 'imagencupon'>
+                    </div>
+          
+                    <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>  
+                    <a href="/DetailCuponGeneral" class="btn btn-danger">Cancelar</a>
+                       
+                </form>
+               
+            </div>
+
+          </div>
+
+        </div> 
+
+ 
+    </div>
+
+    <% } %>
+      <!-- Activar el calendario en los campos de fecha -->
+      <script>
+        $('#fechainicio').datepicker({
+             format: 'yyyy-mm-dd',
+             autoclose: true,
+             startDate: 'today'  // Solo permite seleccionar fechas a partir de hoy
+         });
+
+         $('#fechafin').datepicker({
+             format: 'yyyy-mm-dd',
+             autoclose: true,
+             startDate: 'today'  // Solo permite seleccionar fechas a partir de hoy
+         });
+     </script>
+   <!-- <h1><i class='bx bxs-castle'></i></h1> ICONO DE CASTILLO-->
+ 
+  </body>
+</div>
+<!-- Content End -->
+</html>

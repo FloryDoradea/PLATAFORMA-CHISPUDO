@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<!-- Content Start -->
+<div class="content">
+  <body>
+    <%- include('partials/header') %>
+
+    <% if(results){ %> 
+    <div class="Container mt-4">
+
+        <!--<div class="card border-secondary">
+            <div class="card-header">Editar Registro</div>
+            <div class="card-body"> FONDO BLANCO-->
+
+      <div class="container-fluid pt-4 px-4">
+        <div  class="row g-4">
+            <div class="col-sm-12 col-xl-150">
+                <div class="bg-secondary rounded h-100 p-4">
+
+                  <form action ="/update" method ="post">
+                    <input id="id" name ="id" value="<%= results.id %>" hidden>
+
+                    <div class="mb-4">
+                        <label for ="user" class="form-label">ID</label>  
+                        <input type="number" class="form-control" id="id" name="id" value="<%= results.id %>" tabindex="1" readonly >
+                    </div>
+                    <div class="mb-3">
+                      <label for ="fullName" class="form-label">Nombre Completo</label>
+                      <input type="text" class="form-control" id="fullName" name="fullName" value="<%= results.fullName %>" tabindex="1">
+                    </div>
+                    <div class="mb-3">
+                      <label for ="email" class="form-label">E-mail</label>
+                      <input type="email" class="form-control" id="email" name="email" value="<%= results.email %>" tabindex="1" readonly>
+                    </div>
+                    <div class="mb-3">
+                      <label for ="roles" class="form-label">Rol</label>
+                      <input type="roles" class="form-control" id="roles" name="roles" value="<%= results.roles %>" tabindex="1" readonly>
+                    </div>
+                    <div class="mb-3">
+                      <label for ="phone" class="form-label">Teléfono</label>
+                      <input type="text" class="form-control" id="phone" name="phone" value="<%= results.phone %>" tabindex="1">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for ="isActive" class="form-label">Activo/Inactivo</label>
+                      <select id="isActive" name="isActive" class="form-select" tabindex="2">
+                          <option <%= results.isActive === true ? "selected": '' %> value="true"> true</option>
+                          <option <%= results.isActive === false ? "selected": '' %> value="false"> false</option>
+                      </select>
+                    </select>
+                  </div>
+  
+                    <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>  
+                    <a href="/index" class="btn btn-danger">Cancelar</a>
+                </form>
+            </div>
+          </div>
+        </div> 
+    </div>
+
+    <% } %>
+
+    <h1><i class='bx bxs-castle'></i></h1> 
+ 
+  </body>
+</div>
+<!-- Content End -->
+</html>

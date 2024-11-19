@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<!-- Content Start -->
+<div class="content">
+  <body>
+    <%- include('partials/header') %>
+
+    <% if(results){ %> 
+    <div class="Container mt-4">
+
+        <!--<div class="card border-secondary">
+            <div class="card-header">Editar Registro</div>
+            <div class="card-body"> FONDO BLANCO-->
+
+      <div class="container-fluid pt-4 px-4">
+        <div  class="row g-4">
+            <div class="col-sm-12 col-xl-150">
+                <div class="bg-secondary rounded h-100 p-4">
+
+                  <form action ="/updateUserPlataform" method ="post">
+                    <input id="id" name ="id" value="<%= results.id %>" hidden>
+
+                    <div class="mb-4">
+                        <label for ="user" class="form-label">ID</label>  
+                        <input type="number" class="form-control" id="id" name="id" value="<%= results.id %>" tabindex="1" readonly >
+                    </div>
+
+                    <div class="mb-4">
+                        <label for ="user" class="form-label">USUARIO</label>  
+                        <input type="user" class="form-control" id="user" name="user" value="<%= results.user %>" tabindex="1"  >
+                    </div>    
+
+                    <div class="mb-4">
+                      <label for ="name" class="form-label">NOMBRES</label>  
+                      <input type="name" class="form-control" id="name" name="name" value="<%= results.name %>" tabindex="1"  >
+                    </div>
+   
+   
+                      <div class="mb-4">
+                      <label for ="lastname" class="form-label">APELLIDOS</label>  
+                      <input type="lastname" class="form-control" id="lastname" name="lastname" value="<%= results.lastname %>" tabindex="1"  >
+                    </div>
+ 
+                    <div class="mb-4">
+                      <label for ="email" class="form-label">E-mail</label>
+                      <input type="email" class="form-control" id="email" name="email" value="<%= results.email %>" tabindex="1" >
+                    </div>
+
+                    <label for ="" class="form-label">Telefonos</label>                    
+                    <div class="input-group mb-3">                      
+                        <input type="text" class="form-control"  value="<%= results.phone1 %>"  placeholder="Telefono 1" tabindex="1" id="phone1" name="phone1" required >
+
+                        <span class="input-group-text"></span>                    
+                         
+                        <input type="text" class="form-control"  value="<%= results.phone2 %>"  placeholder="Telefono 2" tabindex="1" id="phone2" name="phone2" required >
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label for ="passwordTemporary" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="passwordTemporary"  name="passwordTemporary" value="<%= results.passwordTemporary %>"  tabindex="1">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for ="roles" class="form-label">Rol</label>
+                        <select id="roles" name="roles" class="form-select" tabindex="2">
+                            <option <%= results.roles === "admin" ? "selected": '' %> value="admin"> Administrador</option>
+                            <option <%= results.roles === "dataentry" ? "selected": '' %> value="dataentry">Solo reportes</option>
+                        </select>
+                      </select>
+                    </div>  
+                      <div class="mb-3">
+                        <label for ="isActive" class="form-label">Activo/Inactivo</label>
+                        <select id="isActive" name="isActive" class="form-select" tabindex="2">
+                            <option <%= results.isActive === true ? "selected": '' %> value="true"> true</option>
+                            <option <%= results.isActive === false ? "selected": '' %> value="false"> false</option>
+                        </select>
+                      </select>
+                    </div>
+
+                  <label for ="file" class="form-label">Suba una fotografia </label>
+                    <div class=" ">
+                        <div class="bg-secondary rounded h-100 p-4">     
+                            <div class="mb-3">
+                                <input class="form-control bg-dark" type="file" id="formFile">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary" tabindex="5">Modificar</button>  
+                    <a href="/DetailUserPlatform" class="btn btn-danger">Cancelar</a>
+                </form>
+            </div>
+        </div>
+          
+       </div> 
+    </div>
+
+    <% } %>
+
+    <h1><i class='bx bxs-castle'></i></h1> 
+ 
+  </body>
+</div>
+<!-- Content End -->
+</html>

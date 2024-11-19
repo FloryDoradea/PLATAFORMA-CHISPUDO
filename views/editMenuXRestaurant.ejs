@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<!-- Content Start -->
+<div class="content">
+  <body>
+    <%- include('partials/header') %>
+
+    <% if(results){ %> 
+    <div class="Container mt-4">
+
+        <!--<div class="card border-secondary">
+            <div class="card-header">Editar Registro</div>
+            <div class="card-body"> FONDO BLANCO-->
+
+      <div class="container-fluid pt-4 px-4">
+        <div  class="row g-4">
+            <div class="col-sm-12 col-xl-150">
+                <div class="bg-secondary rounded h-100 p-4">
+
+                  <form action ="/updateMenuXRestaurant" method ="post">
+                    <input id="id" name ="id" value="<%= results.id %>" hidden>
+                    <input id="companyId" name ="companyId" value="<%= results.companyId %>" hidden>
+
+                    
+                    <div class="mb-3 d-flex justify-content-center">
+                      <label for="image" class="form-label"></label>
+                      <img src="<%= results.image %>" alt="Imagen del Producto">
+                    </div>
+
+                    <div class="mb-4">
+                      <label for ="id" class="form-label">Código del menú</label>  
+                      <input type="number" class="form-control" id="id" name="id" value="<%= results.id %>" tabindex="1" readonly >
+                    </div>
+
+                    <div class="mb-3">
+                      <label for ="NameCompany" class="form-label">Nombre del Restaurante</label>
+                      <input type="text" class="form-control" id="NameCompany" name="NameCompany" value="<%= results.NameCompany %>" tabindex="1" readonly >
+                    </div>
+                    <div class="mb-3">
+                      <label for ="NameProduct" class="form-label">Nombre del menú *</label>
+                      <input type="text" class="form-control" id="NameProduct" name="NameProduct" value="<%= results.NameProduct %>" tabindex="1" required>
+                    </div>
+                    <div class="mb-3"> <!-- step="0.01": Permite números con decimales, en pasos de 0.01. min="0.01": Define el valor mínimo permitido, asegurando que no se pueda ingresar un valor menor o igual a cero. -->
+                      <label for="price" class="form-label">Precio *</label>
+                      <input type="number" step="0.01" min="0.01" class="form-control" id="price" name="price" value="<%= results.price %>"  tabindex="1" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for ="description" class="form-label">Descripción del menú *</label>
+                      <textarea class="form-control" id="description" name="description" rows="4" tabindex="1" required ><%= results.description %></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="isActive" class="form-label">Activo/Inactivo *</label>
+                      <select id="isActive" name="isActive" class="form-select" tabindex="2">
+                          <!-- Opción Activo -->
+                          <option value="true" <%= results.isActive === true || results.isActive === 'true' || results.isActive == 1 ? 'selected' : '' %>>true</option>
+                          
+                          <!-- Opción Inactivo -->
+                          <option value="false" <%= results.isActive === false || results.isActive === 'false' || results.isActive == 0 ? 'selected' : '' %>>false</option>
+                      </select>
+                  </div>
+                  
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Cambiar Imagen menú *</label>
+                        <input class="form-control bg-dark" type="file" id="image">
+                    </div>
+          
+                    <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>  
+                    <a href="/MenuXRestaurant" class="btn btn-danger">Cancelar</a>
+                       
+                </form>
+               
+            </div>
+          </div>
+        </div> 
+    </div>
+
+    <% } %>
+
+   <!-- <h1><i class='bx bxs-castle'></i></h1> ICONO DE CASTILLO-->
+ 
+  </body>
+</div>
+<!-- Content End -->
+</html>

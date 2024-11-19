@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calendario</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+    </head> 
+<!-- Content Start -->
+<div class="content">
+  <body>
+
+   
+    <%- include('partials/header') %>
+
+    <div class="Container mt-4">
+      <div class="container-fluid pt-4 px-4">
+        <div  class="row g-4">
+            <div class="col-sm-12 col-xl-10">
+                <div class="bg-secondary rounded h-100 p-4">
+
+                  <h6 align = "center" class="mb-4">REPORTES VARIOS DELIVERY</h6>
+                  <form action ="/RepVariosDelivery" method ="POST">
+                    <input id="id" name ="id" value=" " hidden>
+
+                    <div class="mb-3">
+                        <label for ="Fecha Inicio" class="fSorm-label">Fecha inicio</label>
+                        <input type="text" class="form-control" id="FechaInicio" name="FechaInicio" value=" " tabindex="1">
+                        <label for ="Fecha Fin" class="form-label">Fecha Fin</label>
+                        <input type="text" class="form-control" id="FechaFin" name="FechaFin" value=" " tabindex="1">
+                    </div>
+                    <div class="mb-3">
+                        <label for ="OpcionReporte" class="form-label">Opcion Reporte</label>
+                        <select id="OpcionReporte" name="OpcionReporte" class="form-select" tabindex="2">
+                            <option value="OrdenesAtendidas" selected>Ordenes atendidas</option>
+                            <option value="Selec" selected>Seleccione reporte</option>
+                        </select>
+                    </div> 
+                  
+                    <button type="submit">descargar</button>
+
+                </form>
+            </div>
+
+          
+
+            <div id="calendar"></div>
+            
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var calendarEl = document.getElementById('calendar');
+              var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+                // Otras opciones de configuración pueden ir aquí
+              });
+              calendar.render();
+            });
+            </script>
+
+
+          </div>
+        </div> 
+    </div>
+
+
+
+  </body>
+</div>
+<!-- Content End -->
+</html>

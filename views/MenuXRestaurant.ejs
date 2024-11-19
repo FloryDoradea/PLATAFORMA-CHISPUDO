@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<!-- Content Start -->
+<div class="content">
+  <!-- Navbar Start -->
+  <%- include('partials/header') %>
+  <!-- Navbar End -->
+
+  <!-- Form Start -->
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-3 cloudflare">
+                <div class="bg-formDetalle rounded h-200 p-4">
+                    <form action="/SearchMenuXRestaurante" method="POST">
+
+                        <div class="mb-3">
+                            <label for="id" class="form-label">ID Restaurante</label>
+                            <input type="text" id="id" name="id" class="form-control" aria-describedby="id" required>
+                        </div>
+                        <input type = "submit" class="btn btn-info" value ="CONSULTAR" >&emsp; 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>          
+  <div class="container-fluid pt-4 px-4">
+      <div class="row g-4">
+          <div class="col-sm-12 cloudflare">
+              <div class="bg-formDetalle rounded h-200 p-4">
+                
+                  <form action="/SearchMenuXRestaurante" method="POST">
+
+                      <!--<div class="container">
+                          <a href="/create" class="btn btn-pink mt-4"> <i class='bx bxs-plus-circle bx-md'></i> </a>
+                      </div>-->
+
+                      <input id="WebPage" name ="WebPage" value="2" hidden>
+
+                      <h4 align="center">MENU POR RESTAURANTE</h4>
+                      <table class="table table-striped text-center table-bordered mt-4">
+                          <thead>
+                              <tr class="table-secondary">
+                                  <th scope="col" style="width: 50px;">ID</th>
+                                  <th scope="col" style="width: 200px;">NOMBRE RESTAURANTE</th>
+                                  <th scope="col" style="width: 50px;">ID MENÚ</th>
+                                  <th scope="col" style="width: 150px;">NOMBRE MENÚ</th>
+                                  <th scope="col" style="width: 75px;">PRECIO</th>
+                                  <th scope="col" style="width: 225px;" >DESCRIPCIÓN</th>
+                                  <th scope="col" style="width: 150px;">DIRECCIÓN</th>
+                                  <th scope="col" style="width: 50px;">ESTADO</th>
+                                  <th scope="col" style="width: 125px;">ACCIONES</th>
+                              </tr>
+                          </thead>
+
+                          <tbody>
+                              <% if (results && results.length > 0) { %>
+                                  <% results.forEach((menu) => { %>
+                                      <tr>
+                                          <td><%= menu.companyId %></td>
+                                          <td><%= menu.NameCompany %></td>
+                                          <td><%= menu.id %></td>
+                                          <td><%= menu.NameProduct %></td>
+                                          <td><%= menu.price.toFixed(2) %></td>
+                                          <td><%= menu.description %></td>
+                                          <td><%= menu.address %></td>
+                                          <td><%= menu.isActive %></td>
+
+                                          <td>
+                                                <a href="/editMenuXRestaurant/<%= menu.id %>" class="btn btn-outline-info">editar</a>
+                                                <a href="#" onclick="confirmDelete('<%= menu.id %>', '<%= menu.companyId %>')" class="btn btn-outline-danger">borrar</a>
+                                                <script>
+                                                    function confirmDelete(menuId, companyId) {
+                                                        // Mostrar cuadro de confirmación
+                                                        let confirmation = confirm("¿Estás seguro de que deseas eliminar este menú? Esta acción no se puede deshacer.");
+                                                        
+                                                        if (confirmation) {
+                                                            // Si el usuario confirma, redirigir a la URL de eliminación
+                                                            window.location.href = `/deleteMenuXRestaurant/${menuId}/${companyId}`;
+                                                        }
+                                                        // Si el usuario cancela, no hacer nada
+                                                    }
+                                                </script>
+                                          </td>
+                                      </tr>
+                                  <% }) %>
+                              <% } else { %>
+                                  <tr>
+                                      <td colspan="4">No se encontraron Menus</td>
+                                  </tr>
+                              <% } %>
+                          </tbody>
+                      </table>
+
+                      <!-- Agregar enlaces para la página siguiente y página anterior -->
+                      <div class="pagination mt-4">
+                          <a href="/MenuXRestaurant?page=<%= parseInt(1) %>" class="btn btn-info">Primera</a>&emsp;
+                          <a href="/MenuXRestaurant?page=<%= parseInt(paginaActual) + 1 %>" class="btn btn-info">Siguiente --></a>&emsp;
+                          <a href="/MenuXRestaurant?page=<%= parseInt(paginaActual) - 1 %>" class="btn btn-info"><-- Anterior </a>
+                      </div>
+
+                      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                      <% if (typeof alert != "undefined") { %>
+                          <script>
+                              swal.fire({
+                                  title: '<%= alertTitle %>',
+                                  text: '<%= alertMessage %>',
+                                  icon: '<%= alertIcon %>',
+                                  showConfirmButton: '<%= showConfirmButton %>',
+                                  timer: '<%= timer %>'
+                              }).then(() => {
+                                  window.location = '/<%= ruta %>'
+                              })
+                          </script>
+                      <% } %>
+
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Form End -->
+</div>
+<!-- Content End -->
+</html>

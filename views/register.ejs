@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  
+<body>
+    <!-- Content Start -->
+        <div class="content">
+ 
+            <%- include('partials/header') %>
+            
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div  class="row g-4">
+                    <div class="col-sm-12 col-xl-10">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            
+                            <h6 align = "center" class="mb-4">INGRESO DE USUARIOS PLATAFORMA</h6>
+
+                           
+                            <form action = "/register" method="POST">
+                                <div class="mb-3">
+                                    <label for="user" class="form-label">ID Usuario</label>
+                                    <input type="text" id="user" name="user" class="form-control" aria-describedby="user" required>
+                                    <div id="user" class="form-text">Codigo unico de usuario</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre Completo</label>
+                                    <input  type="text" id="name" name="name" class="form-control"  aria-describedby="name" required>
+                                    <div id="name" class="form-text">Nombre Completo del usuario </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="rol" name="rol" aria-label="Floating label select example" required>
+                                        <option selected>Rol</option>
+                                        <option value="admin">Admin 1</option>
+                                        <option value="data entry">Admin 2</option>
+                                    </select>
+                                    <label for="rol">Combo de roles</label>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="pass" name = "pass" required>
+                                    <div id="password" class="form-text">Contraseña de usuario</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Direccion de correo</label>
+                                    <input type="email" class="form-control" id="email" name = "email"  aria-describedby="emailHelp" required>
+                                    <div id="emailHelp" class="form-text">No compartiremos tu correo electronico con nadie.</div>
+                                </div>
+     
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px;" required></textarea>
+                                    <label for="floatingTextarea">Comentarios</label>
+                                </div>
+                                <BR>
+                            
+                                <input type = "submit" class="btn btn-success" value ="GRABAR USUARIO" >&emsp; 
+                                <input type = "submit" class="btn btn-info" value ="CONSULTAR" >&emsp; 
+                                <input type = "submit" class="btn btn-warning" value ="MODIFICAR" > &emsp;  
+                                <input type = "submit" class="btn btn-danger" value ="ELIMINAR" >
+                             
+                               
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!--usuando SWEETALERTER2 CON CDN -->
+                                <% if(typeof alert != "undefined"){ %>  <!--aca controlamos con js que el ALERT sea distinto que undefined-->
+                                  
+                                  <!--estos son los parametros que se reciven app.ejs, punto 10,  app.post('/register', async(req,res)=>{ -->
+                                  <script>
+                                      swal.fire({                     
+                                          title: '<%= alertTitle %>',
+                                          text:'<%= alertMessage %>',
+                                          icon:'<%= alertIcon %>',
+                                          showConfirmButton: '<%= showConfirmButton %>' ,
+                                          timer: '<%= timer %>'
+                                      }) 
+                                  </script>
+                                  <% } %>
+                                  
+                             
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Form End -->
+
+
+           
+        </div>
+        <!-- Content End -->
+
+    
+
+    </body>
+
+</html>        

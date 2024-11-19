@@ -1,0 +1,86 @@
+<!-- Content Start -->
+<div class="content">
+    <!-- Navbar Start -->
+    <%- include('partials/header') %>
+    <!-- Navbar End -->
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 cloudflare">
+                <div class="bg-formDetalle rounded h-200 p-4">
+                    <form action="/save" method="POST">
+
+                       <!-- <div class="container">
+                            <a href="/create" class="btn btn-pink mt-4"> <i class='bx bxs-plus-circle bx-md'></i> </a>
+                        </div>-->
+                        <h4 align="center">USUARIOS APP MOVIL</h4>
+                        <table class="table table-striped text-center table-bordered mt-4">
+                            <thead>
+                                <tr class="table-secondary">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">E-MAIL</th>
+                                    <th scope="col">ROLES</th>
+                                    <th scope="col">TELEFONO APP</th>
+                                    <th scope="col">ESTADO</th>
+                                    <th scope="col">CONFIRMADO?</th>
+                                    <th scope="col">ACCIONES</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% if (results && results.length > 0) { %>
+                                    <% results.forEach((user) => { %>
+                                        <tr>
+                                            <td><%= user.id %></td>
+                                            <td><%= user.fullName %></td>
+                                            <td><%= user.email %></td>
+                                            <td><%= user.roles %></td>
+                                            <td><%= user.phone %></td>
+                                            <td><%= user.isActive %></td>
+                                            <td><%= user.isEmailConfirmed %></td>
+                                            <td>
+                                                <a href="/edit/<%= user.id %>" class="btn btn-outline-info">editar</a>
+                                                <a href="/delete/<%= user.id %>" class="btn btn-outline-danger">borrar</a>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="4">No se encontraron usuarios</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+
+                        <!-- Agregar enlaces para la página siguiente y página anterior -->
+                        <div class="pagination mt-4">
+                            <a href="/index?page=<%= parseInt(1) %>" class="btn btn-info">Primera</a>&emsp;
+                            <a href="/index?page=<%= parseInt(paginaActual) + 1 %>" class="btn btn-info">Siguiente --></a>&emsp;
+                            <a href="/index?page=<%= parseInt(paginaActual) - 1 %>" class="btn btn-info"><-- Anterior </a>
+                        </div>
+
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <% if (typeof alert != "undefined") { %>
+                            <script>
+                                swal.fire({
+                                    title: '<%= alertTitle %>',
+                                    text: '<%= alertMessage %>',
+                                    icon: '<%= alertIcon %>',
+                                    showConfirmButton: '<%= showConfirmButton %>',
+                                    timer: '<%= timer %>'
+                                }).then(() => {
+                                    window.location = '/<%= ruta %>'
+                                })
+                            </script>
+                        <% } %>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form End -->
+</div>
+<!-- Content End -->
